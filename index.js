@@ -31,6 +31,10 @@ const io = new Server(server, {
   cors: corsOptions,
 });
 
+app.get('/', (req, res) => {
+  res.send('<h1>Hello world</h1>');
+});
+
 io.on("connection", (socket) => {
   console.log("a user connected");
 
