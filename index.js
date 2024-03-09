@@ -1,56 +1,20 @@
-const express = require("express");
-const { createServer } = require("node:http");
-const { Server } = require("socket.io");
-const cors = require("cors");
+const express = require('express');
+const { createServer } = require('node:http');
+const { join } = require('node:path');
+const { Server } = require('socket.io');
 
 const app = express();
-
-const allowedOrigins = [
-  'capacitor://localhost',
-  'ionic://localhost',
-  'http://localhost',
-  'http://localhost:8080',
-  'http://localhost:8100',
-  'https://mygamescore-86946.web.app'
-];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Origin not allowed by CORS'));
-    }
-  },
-};
-
-app.use(cors(corsOptions));
-
 const server = createServer(app);
-// const io = new Server(server, {
-//   cors: corsOptions,
-// });
+const io = new Server(server);
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello world</h1>');
+  res.sendFile(join(__dirname, 'index.html'));
 });
 
-// io.on("connection", (socket) => {
-//   console.log("a user connected");
-
-//   socket.on('videoChange', (newSource) => {
-//     io.emit('videoChange', newSource);
-//   });
-
-//   socket.on('score', (newSource) => {
-//     io.emit('score', newSource);
-//   });
-
-//   socket.on('set', (newSource) => {
-//     io.emit('set', newSource);
-//   });
-// });
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
 
 server.listen(3000, () => {
-  console.log("server running at http://localhost:3000");
+  console.log('Server running on port 3000');
 });
