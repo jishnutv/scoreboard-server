@@ -27,7 +27,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: corsOptions,
+});
 
 io.on("connection", (socket) => {
   console.log("a user connected");
