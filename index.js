@@ -27,12 +27,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "https://mygamescore-86946.web.app",
-    methods: ["GET", "POST"],
-  },
-});
+const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log("a user connected");
