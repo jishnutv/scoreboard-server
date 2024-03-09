@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:8100",
+    origin: "https://mygamescore-86946.web.app",
     methods: ["GET", "POST"],
   },
 });
