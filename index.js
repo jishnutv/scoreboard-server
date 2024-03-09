@@ -11,6 +11,7 @@ const allowedOrigins = [
   'http://localhost',
   'http://localhost:8080',
   'http://localhost:8100',
+  'https://mygamescore-86946.web.app'
 ];
 
 const corsOptions = {
