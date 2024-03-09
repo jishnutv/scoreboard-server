@@ -27,29 +27,29 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const server = createServer(app);
-const io = new Server(server, {
-  cors: corsOptions,
-});
+// const io = new Server(server, {
+//   cors: corsOptions,
+// });
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello world</h1>');
 });
 
-io.on("connection", (socket) => {
-  console.log("a user connected");
+// io.on("connection", (socket) => {
+//   console.log("a user connected");
 
-  socket.on('videoChange', (newSource) => {
-    io.emit('videoChange', newSource);
-  });
+//   socket.on('videoChange', (newSource) => {
+//     io.emit('videoChange', newSource);
+//   });
 
-  socket.on('score', (newSource) => {
-    io.emit('score', newSource);
-  });
+//   socket.on('score', (newSource) => {
+//     io.emit('score', newSource);
+//   });
 
-  socket.on('set', (newSource) => {
-    io.emit('set', newSource);
-  });
-});
+//   socket.on('set', (newSource) => {
+//     io.emit('set', newSource);
+//   });
+// });
 
 server.listen(3000, () => {
   console.log("server running at http://localhost:3000");
